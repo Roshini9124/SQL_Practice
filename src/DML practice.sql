@@ -109,3 +109,13 @@ age int check(age>=18),
 	 offset  2  rows ;
 
 	 SELECT @@VERSION;
+
+	 select   distinct salary  from emp
+	 order by  salary desc
+	 offset 1 rows
+	 fetch next 1 rows only;
+	 
+	 insert into emp
+	 values
+	 (6,'Ross','31',700000,'1999-10-18',1),
+	 (10,'Mark','29',70000,'1999-01-01',5);
