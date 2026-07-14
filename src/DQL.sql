@@ -43,3 +43,14 @@ select * from emp_backup;
 
 
 select max(salary),department from employees  where gender='male' group by department ;
+
+
+select department from employees where experience>4  group by department ;
+
+select city from employees where gender='female' group by city having count(gender)>2;
+
+select department from employees group by department having avg(age)>30;
+
+select city from employees group by city having sum(salary)>40000; 
+
+select department from employees where gender='male' group by department having count(gender)>2;
