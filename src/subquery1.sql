@@ -103,8 +103,59 @@ select empname from employee where salary=
 insert into employee
 values
 (9,'Joey','HR',47500,'Queens');
---find second max
+--find second max salary 
 
 
 select top 1 salary from employee where salary < 
 (select max(salary) from employee)
+
+
+
+with disp_cte as
+(
+select * from employee
+)
+select empname,city from disp_cte;
+
+select * from disp_cte;
+
+
+
+--corelated subquery
+
+drop table if exists Employee;
+
+CREATE TABLE Employee (
+    EmpID INT PRIMARY KEY,
+    EmpName VARCHAR(50),
+    Department VARCHAR(20),
+    Salary INT
+);
+
+INSERT INTO Employee VALUES
+(1,'Sheldon','Research',90000),
+(2,'Leonard','Research',75000),
+(3,'Howard','Engineering',70000),
+(4,'Raj','Engineering',65000),
+(5,'Penny','Sales',60000),
+(6,'Bernadette','Sales',80000),
+(7,'Amy','Research',95000),
+(8,'Stuart','Sales',50000);
+
+--Find employees whose salary is greater than the average salary of their own department.
+select e.empname from employee e where e.salary>(
+select avg(salary) from employee where department=e.department);
+
+--Find employees who earn the highest salary in their own department.
+
+select e.empname from employee e where e.salary=(
+select max(salary) from employee where department=e.department);
+
+--Find employees who earn the lowest salary in their own department.
+select e.empname from employee e where e.salary=
+(select min(salary) from employee where department=e.department);
+
+
+
+select empname,salary,avg(salary) over(partition by department) as avgsalary from employee;
+
