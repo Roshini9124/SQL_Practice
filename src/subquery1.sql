@@ -157,5 +157,10 @@ select e.empname from employee e where e.salary=
 
 
 
-select empname,salary,avg(salary) over(partition by department) as avgsalary from employee;
+--select empname,salary,avg(salary) over(partition by department) as avgsalary from employee;
 
+create view display as
+select * from employee
+
+
+select * from display;
