@@ -86,3 +86,4 @@ select d.depname,e.empname
 from department d
 left join employee e
 on d.departmentid=e.DepartmentID
+
